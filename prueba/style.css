@@ -1,0 +1,683 @@
+@font-face {
+    font-family: 'Voga';
+    src: url('Voga-Medium.otf') format('opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff0f5; 
+    overflow-x: hidden;
+    color: #4a4a4a; 
+}
+
+#flower-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    z-index: 9999; 
+    overflow: hidden;
+}
+
+.falling-flower {
+    position: absolute;
+    top: -50px;
+    user-select: none;
+    animation-name: fall-animation;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fall-animation {
+    to {
+        transform: translateY(110vh) rotate(360deg); 
+    }
+}
+
+
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #fff0f5; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.8s ease;
+}
+
+.gift-container {
+    position: relative;
+    text-align: center;
+}
+
+.snoopy-sleep {
+    width: 150px;
+    position: absolute;
+    top: -60px;
+    left: 20%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+    animation: respirar-pro 5s ease-in-out infinite;
+}
+
+
+.gift-box {
+    width: 300px;
+    height: 300px;
+    background-color: #ff85a2; 
+    border: 4px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 30px rgba(255, 105, 180, 0.3);
+    border-radius: 20px;
+}
+
+#open-btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    color: #ff6b8b; 
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+#open-btn:hover {
+    transform: scale(1.05);
+    background-color: #ffebf0;
+    box-shadow: 0 8px 20px rgba(255, 107, 139, 0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+#main-page {
+
+    animation: fadeIn 1.5s ease;
+}
+
+.abuelo {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.abuelo-grupos {
+    flex: 1;
+    max-width: 300px;
+}
+
+.abuelo-grupos img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.abuelo-grupo h1 {
+    text-align: center;
+    font-family: 'voga', sans-serif;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.abuelo-grupo {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.check-oculto-abuelo {
+    display: none;
+}
+
+.sobre-cerrado-abuelo {
+    display: inline-block;
+    background: #fffafa;
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px dashed #ffb6c1;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.icono-sobre-abuelo {
+    font-size: 80px;
+}
+
+.contenido-revelado {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 1s ease-in-out;
+}
+
+.check-oculto-abuelo:checked ~ .contenido-revelado {
+    max-height: 700px;
+    opacity: 1;
+    margin-top: 40px;
+}
+
+.check-oculto-abuelo:checked ~ .sobre-cerrado-abuelo {
+    display: none;
+}
+
+.abuelo {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.abuelo-grupos {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.abuelo-grupos img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.abuelo-grupo h1 {
+    font-family: 'Georgia', serif;
+    color: #555;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.hero-image{
+    grid-column: 1/-1;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+    background-image: url(../img/amigos_grupo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    z-index: -1;
+    animation: hero-animation linear forwards;
+    animation-timeline: view();
+    animation-range: exit;
+}
+
+.hero-content {
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 80vh;
+    z-index: 1;
+
+}
+
+.hero-text {
+    text-align: left;
+    flex: 1;
+    animation: fade-out linear;
+    animation-timeline: view();
+    animation-range: exit -200px;
+}
+
+.hero-text h1 {
+    font-family: 'voga',serif;
+    font-size: 4rem;
+    margin-bottom: 15px;
+    color: #c2185b; 
+}
+
+.hero-text h5 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+.hero-img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.snoopy-large {
+    width: 80%;
+    max-width: 500px;
+    filter: drop-shadow(5px 10px 20px rgba(255, 105, 180, 0.2));
+    animation: fade-out linear;
+    animation-timeline: view();
+    animation-range: exit -200px;
+}
+
+.photo-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 100px;
+    padding-bottom: 100px;
+}
+
+.photo-card {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4); 
+    text-align: center;
+    border-radius: 15px;
+    transition: transform 0.5s ease;
+    border: 2px solid #fff0f5;
+    animation: imagereveal both;
+    animation-timeline: view(100% 20%);
+}
+
+.photo-card:hover {
+    transform: translateY(-10px);
+}
+
+.photo-card img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.photo-card p {
+    font-family: 'Voga',serif;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #c2185b;
+    font-size: 1.6rem;
+}
+
+.carouse{
+    margin: 100px auto;
+    width: 90%;
+    border: 5px solid rgb(224, 150, 220);
+    display: flex;
+    overflow: auto;
+    animation: imagereveal both;
+    animation-timeline: view(50% 20%);
+}
+
+.carouse::-webkit-scrollbar{
+    display: none;
+}
+
+.group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    animation: spin 25s infinite linear;
+    padding-right: 1em;
+}
+
+.card{
+    flex: 0 0 7em;
+    height: 7em;
+    padding: 1em;
+    font-size: 3rem;
+    border-radius: .2em;
+    text-align: center;
+    align-content: center;
+    box-sizing: border-box; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card img {
+    width: 140%;
+    height: 140%;
+    object-fit: cover;
+    display: block;
+    border-radius: .1em;
+}
+
+/* Escondemos el checkbox original */
+.gift-checkbox {
+    display: none;
+}
+
+.gift-wrapper {
+    max-width: 400px;
+    text-align: center;
+    margin-left: 100px;
+    animation: imagereveal both;
+    animation-timeline: view(160% 10%);
+}
+
+
+.gift-bow-button {
+    display: inline-block;
+    background: #fafafa;
+    color: white;
+    padding: 70px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.gift-bow-button .bow {
+    font-size: 300px;
+    display: block;
+}
+
+.gift-checkbox:checked ~ .gift-bow-button {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    position: absolute; 
+}
+
+
+.gift-message-drop {
+    max-height: 0;
+    overflow: hidden;
+    background: #fff;
+    border: 0px solid transparent;
+    border-radius: 10px;
+    transition: max-height 3s cubic-bezier(0.25, 1, 0.5, 1), border 0.3s;
+}
+
+.gift-checkbox:checked ~ .gift-message-drop {
+    max-height: 700px; 
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-top: 200px;
+}
+
+.gift-inner-content {
+    padding: 50px 30px;
+    color: #333;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.cat-hug {
+    position: absolute;
+    right: -700px; 
+    bottom: -60px;  
+    width: 700px;  
+    opacity: 0;    
+    transition: opacity 1s ease 0.5s; 
+    pointer-events: none;
+}
+
+.gift-checkbox:checked ~ .cat-hug {
+    opacity: 1;
+}
+
+.cat-hug img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.gift-wrapper {
+    position: relative; 
+}
+
+.contenedor-regalo {
+    position: relative;
+    max-width: 400px;
+    text-align: center;
+    margin-left: 730px;  
+    animation: imagereveal both;
+    animation-timeline: view(160% 10%);
+}
+
+.check-oculto {
+    display: none;
+}
+
+.sobre-cerrado {
+    display: inline-block;
+    background: #fafafa;
+    padding: 70px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.icono-sobre {
+    font-size: 300px;
+    display: block;
+}
+
+.check-oculto:checked ~ .sobre-cerrado {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    position: absolute; 
+    
+}
+
+.carta-desplegable {
+    max-height: 0;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px;
+    transition: max-height 3s cubic-bezier(0.25, 1, 0.5, 1), border 0.3s;
+}
+
+.check-oculto:checked ~ .carta-desplegable {
+    max-height: 700px; 
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-top: 20px; 
+    
+}
+
+.contenido-carta {
+    padding: 50px 20px;
+    color: #333;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.abrazo-gato {
+    position: absolute;
+    right: 360px;
+    bottom: -60px;
+    width: 700px; 
+    opacity: 0;
+    transition: opacity 1s ease 0.8s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.check-oculto:checked ~ .abrazo-gato {
+    opacity: 1;
+}
+
+.abrazo-gato img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+
+@keyframes respirar-pro {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(100%);
+  }
+  50% {
+    transform: scale(1.07);
+    filter: brightness(110%);
+  }
+}
+
+@keyframes spin {
+    from {translate: 0;}
+    to {translate: -100%;}
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-out{
+    to{opacity: 0;}
+}
+
+@keyframes hero-animation {
+    25% {opacity: 1;}
+    85%, 100% {opacity: 0; scale: 3;}
+}
+
+@keyframes imagereveal {
+    from{
+        filter: saturate(0) contrast(4) brightness(.1) blur(5px);
+        opacity: 0;
+        scale: .95;
+        translate: 0 4rem;
+    }
+    to{
+        filter: none;
+        opacity: 1;
+        scale: 1;
+        translate: 0 0;
+    }
+}
+
+/* Ajustes generales para móviles */
+@media (max-width: 768px) {
+    /* Hero section */
+    .hero-content {
+        flex-direction: column-reverse;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem; /* más pequeño que en escritorio */
+        line-height: 1.2;
+    }
+
+    .hero-text h5 {
+        font-size: 1.2rem;
+        line-height: 1.4;
+    }
+
+    .hero-img {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .snoopy-large {
+        max-width: 300px;
+    }
+
+    /* Photo gallery */
+    .photo-gallery {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .photo-card img {
+        width: 250px;
+        height: 350px;
+    }
+
+    .photo-card p {
+        font-size: 1.3rem;
+    }
+
+    /* Carousel */
+    .carouse {
+        width: 100%;
+        overflow-x: scroll;
+        margin: 50px 0;
+    }
+
+    .group {
+        gap: 0.5em;
+    }
+
+    .card img {
+        width: 120%;
+        height: 120%;
+    }
+
+    /* Gift / carta */
+    .gift-wrapper,
+    .contenedor-regalo {
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+    }
+
+    .gift-bow-button .bow,
+    .icono-sobre,
+    .icono-sobre-abuelo {
+        font-size: 150px; /* más pequeño en móvil */
+    }
+
+    .carta-desplegable,
+    .gift-message-drop {
+        padding: 30px 15px;
+        margin-top: 100px;
+    }
+
+    .abrazo-gato{
+        display: none;
+    }
+
+    .cat-hug{
+        width: 80%;
+        right: 0;
+        bottom: -200px;
+    }
+
+    /* Abuelo / grupos */
+    .abuelo {
+        display: flex;
+        flex-direction: row; /* que se mantenga en fila */
+        flex-wrap: wrap;     /* que se vaya a otra fila si no cabe */
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .abuelo-grupos {
+        flex: 1 1 150px;   /* mínimo 150px, pero puede encoger */
+        max-width: 200px;  /* ajusta para que quepan más por fila */
+    }
+
+    .abuelo-grupo h1 {
+        font-size: 1.3rem;
+    }
+}
+
+
